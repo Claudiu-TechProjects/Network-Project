@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Iptables Interface</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<h1>Flask Iptables Interface</h1>
+
+<button id="getFilterRules">Get Filter Rules</button>
+<button id="getNatRules">Get NAT Rules</button>
+<button id="addRule">Add Rule</button>
+<div id="addRuleForm" style="display: none;">
+    <label for="ruleTable">Rule Table:</label>
+    <select id="ruleTable">
+        <option value="filter">filter</option>
+        <option value="nat">nat</option>
+    </select>
+    <br>
+    <label for="ruleType">Rule Type:</label>
+    <select id="ruleType">
+        <option value="INPUT">INPUT</option>
+        <option value="FORWARD">FORWARD</option>
+        <option value="OUTPUT">OUTPUT</option>
+        <option value="PREROUTING">PREROUTING</option>
+        <option value="POSTROUTING">POSTROUTING</option>
+    </select>
+    <br>
+    <label for="ruleAction">Rule Action:</label>
+    <select id="ruleAction">
+        <option value="ACCEPT">ACCEPT</option>
+        <option value="DROP">DROP</option>
+        <option value="DNAT">DNAT</option>
+    </select>
+    <br>
+    <label for="ipAddress">IP Address:</label>
+    <input type="text" id="ipAddress" placeholder="Enter IP Address">
+    <br>
+    <label for="port">Port:</label>
+    <input type="text" id="port" placeholder="Enter Port">
+    <br>
+    <div id="ipAddressDestinationContainer" style="display: none;">
+        <label for="ipAddressDestination">IP Address Destination:</label>
+        <input type="text" id="ipAddressDestination" placeholder="Enter IP Address Destination">
+        <br>
+    </div>
+    <button id="submitRule">Submit Rule</button>
+</div>
+<button id="deleteRule">Delete Rule</button>
+<div id="deleteRuleForm" style="display: none;">
+    <label for="deleteRuleType">Rule Type:</label>
+    <select id="deleteRuleType">
+        <option value="INPUT">INPUT</option>
+        <option value="FORWARD">FORWARD</option>
+        <option value="OUTPUT">OUTPUT</option>
+        <option value="PREROUTING">PREROUTING</option>
+        <option value="POSTROUTING">POSTROUTING</option>
+    </select>
+    <br>
+    <label for="deleteRuleNumber">Rule Number:</label>
+    <input type="text" id="deleteRuleNumber" placeholder="Enter Rule Number">
+    <br>
+    <button id="submitDeleteRule">Submit Delete Rule</button>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        // Function to make a request to the specified Flask route
+        function makeRequest(route, method, data, successCallback, errorCallback) {
+            $.ajax({
+                url: "http://localhost:5000" + route,
+                type: method,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: successCallback,
+                error: errorCallback
+            });
+        }
+
+        // Button click handlers
+        $("#getFilterRules").click(function () {
+            makeRequest("/iptables/filter", "GET", null, function (data) {
+                //alert("Filter Rules:\n" + JSON.stringify(data, null, 2));
+                showModal("Filter Rules", JSON.stringify(data, null, 2));
+            });
+        });
+
+        $("#getNatRules").click(function () {
+            makeRequest("/iptables/nat", "GET", null, function (data) {
+                //alert("NAT Rules:\n" + JSON.stringify(data, null, 2));
+                showModal("NAT Rules", JSON.stringify(data, null, 2));
+            });
+        });
+
+        $("#addRule").click(function () {
+        $("#addRuleForm").toggle();
+    });
+        $("#ruleTable").change(function () {
+            var selectedRuleTable = $("#ruleTable").val();
+            if (selectedRuleTable === "nat") {
+                $("#ipAddressDestinationContainer").show();
+            } else {
+                $("#ipAddressDestinationContainer").hide();
+            }
+            });
+
+        $("#submitRule").click(function () {
+            var ruleTable = $("#ruleTable").val();
+            var ruleType = $("#ruleType").val();
+            var ruleAction = $("#ruleAction").val();
+            var ipAddress = $("#ipAddress").val();
+            var port = $("#port").val();
+            var ipAddressDestination = $("#ipAddressDestination").val();
+
+            var requestData = {
+                "rule_table": ruleTable,
+                "rule_type": ruleType,
+                "rule_action": ruleAction,
+                "ip_address": ipAddress,
+                "port": port,
+                "ip_address_destination": ipAddressDestination
+            };
+
+            makeRequest("/iptables/add", "POST", requestData, function (data) {
+                alert("Message:\n" + JSON.stringify(data, null, 2));
+            });
+
+            // Hide the form after submitting
+            $("#addRuleForm").hide();
+        });
+
+        $("#deleteRule").click(function () {
+        $("#deleteRuleForm").toggle();
+    });
+
+        $("#submitDeleteRule").click(function () {
+            var deleteRuleType = $("#deleteRuleType").val();
+            var deleteRuleNumber = $("#deleteRuleNumber").val();
+
+            var deleteRuleData = {
+                "rule_type": deleteRuleType,
+                "rule_number": deleteRuleNumber
+            };
+
+            makeRequest("/iptables/delete", "DELETE", deleteRuleData, function (data) {
+                alert("Message:\n" + JSON.stringify(data, null, 2));
+            });
+
+            // Hide the form after submitting
+            $("#deleteRuleForm").hide();
+        });
+    });
+
+    function showModal(title, content) {
+    var modalHtml = `
+        <div class="modal fade" id="customModal" tabindex="-1" role="dialog" aria-labelledby="customModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 62vw;" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="customModalLabel">${title}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <pre style="white-space: pre-line;">${formatIptablesRules(content)}</pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Append the modal HTML to the body
+    $('body').append(modalHtml);
+
+    // Show the modal
+    $('#customModal').modal('show');
+
+    // Remove the modal from the DOM when it's closed
+    $('#customModal').on('hidden.bs.modal', function () {
+        $(this).remove();
+    });
+
+    // Function to format iptables rules for better display
+    function formatIptablesRules(rawRules) {
+        // // Split the rules into lines
+        var formattedRules = rawRules.replace(/\\n/g, '<br>');
+
+        return formattedRules;
+    }
+}
+</script>
+
+</body>
+</html>
