@@ -1,9 +1,12 @@
 from flask import request, jsonify, Flask, send_from_directory
 import re
 import os
+from flask_cors import CORS
 import subprocess
 
 app = Flask(__name__)
+
+CORS(app, resources={r"/iptables/*": {"origins": "http://20.127.44.76:5000"}})
 
 #source retele/bin/activate =>activare mediu virtual
 
@@ -64,4 +67,4 @@ def delete_iptables_rule():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0',port=5001)

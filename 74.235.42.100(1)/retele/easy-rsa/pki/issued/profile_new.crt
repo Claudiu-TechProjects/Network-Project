@@ -1,0 +1,59 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            72:bb:29:1e:69:86:a2:79:59:1f:b1:ae:b1:37:0f:60
+        Signature Algorithm: ecdsa-with-SHA512
+        Issuer: CN=74.235.42.100
+        Validity
+            Not Before: Jan 31 22:55:18 2024 GMT
+            Not After : Jan 15 22:55:18 2027 GMT
+        Subject: CN=profile_new
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (384 bit)
+                pub:
+                    04:76:b8:17:92:f6:5b:1d:a3:42:63:5f:6d:80:f1:
+                    b7:94:e9:41:bc:1b:28:1b:1a:26:bc:bc:71:77:a0:
+                    41:2d:69:ab:20:f8:7c:a1:f3:12:57:c2:cf:4a:4f:
+                    4a:c4:77:81:07:3b:6c:85:7b:c8:b6:dd:0c:0f:28:
+                    ec:e9:ca:21:bf:8c:40:66:96:07:da:9b:ca:75:1e:
+                    02:79:45:41:40:3e:10:09:3a:de:f3:17:90:65:d0:
+                    f1:76:43:ff:62:55:a8
+                ASN1 OID: secp384r1
+                NIST CURVE: P-384
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                D8:A4:44:1C:8D:3D:0B:F0:D8:36:A4:86:90:EF:2C:96:91:9E:69:B2
+            X509v3 Authority Key Identifier: 
+                keyid:79:28:BB:6A:A9:FA:D3:26:92:7C:9C:A7:1A:0A:ED:5E:27:9E:9D:C2
+                DirName:/CN=74.235.42.100
+                serial:55:41:6C:04:73:33:9F:81:3F:9A:B6:5B:90:08:AD:E2:02:BA:2E:51
+
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication
+            X509v3 Key Usage: 
+                Digital Signature
+    Signature Algorithm: ecdsa-with-SHA512
+         30:65:02:30:5d:5c:7a:11:99:ca:3b:55:08:2b:82:e0:62:f9:
+         bd:e5:5a:e9:6d:70:e2:51:cd:cb:f4:a8:90:70:3a:b5:a0:4d:
+         18:77:7f:8d:47:83:d4:c0:5c:d9:c4:cc:75:f3:28:84:02:31:
+         00:d4:ee:bf:6a:19:3c:85:e7:48:e7:f0:6e:58:ff:9e:89:61:
+         ba:af:a8:6b:8b:bc:05:48:63:eb:34:00:31:b8:05:a8:13:bb:
+         bb:32:a8:f9:46:15:82:a7:f8:b3:24:0c:fc
+-----BEGIN CERTIFICATE-----
+MIICDjCCAZSgAwIBAgIQcrspHmmGonlZH7GusTcPYDAKBggqhkjOPQQDBDAYMRYw
+FAYDVQQDDA03NC4yMzUuNDIuMTAwMB4XDTI0MDEzMTIyNTUxOFoXDTI3MDExNTIy
+NTUxOFowFjEUMBIGA1UEAwwLcHJvZmlsZV9uZXcwdjAQBgcqhkjOPQIBBgUrgQQA
+IgNiAAR2uBeS9lsdo0JjX22A8beU6UG8GygbGia8vHF3oEEtaasg+Hyh8xJXws9K
+T0rEd4EHO2yFe8i23QwPKOzpyiG/jEBmlgfam8p1HgJ5RUFAPhAJOt7zF5Bl0PF2
+Q/9iVaijgaQwgaEwCQYDVR0TBAIwADAdBgNVHQ4EFgQU2KREHI09C/DYNqSGkO8s
+lpGeabIwUwYDVR0jBEwwSoAUeSi7aqn60yaSfJynGgrtXieencKhHKQaMBgxFjAU
+BgNVBAMMDTc0LjIzNS40Mi4xMDCCFFVBbARzM5+BP5q2W5AIreICui5RMBMGA1Ud
+JQQMMAoGCCsGAQUFBwMCMAsGA1UdDwQEAwIHgDAKBggqhkjOPQQDBANoADBlAjBd
+XHoRmco7VQgrguBi+b3lWultcOJRzcv0qJBwOrWgTRh3f41Hg9TAXNnEzHXzKIQC
+MQDU7r9qGTyF50jn8G5Y/56JYbqvqGuLvAVIY+s0ADG4BagTu7syqPlGFYKn+LMk
+DPw=
+-----END CERTIFICATE-----

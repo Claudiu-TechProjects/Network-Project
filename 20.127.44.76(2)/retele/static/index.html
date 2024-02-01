@@ -38,7 +38,8 @@
         <label for="ruleAction">Rule Action:</label>
         <select id="ruleAction">
             <option value="ACCEPT">ACCEPT</option>
-            <option value="DROP">DROP</option>
+            <option value="REJECT">REJECT</option>
+	    <option value="DROP">DROP</option>
             <option value="DNAT">DNAT</option>
         </select>
         <br>
@@ -64,6 +65,8 @@
             <option value="OUTPUT">OUTPUT</option>
             <option value="PREROUTING">PREROUTING</option>
             <option value="POSTROUTING">POSTROUTING</option>
+	    <option value="DROP">DROP</option>
+	    <option value="REJECT">REJECT</option>
         </select>
         <br>
         <label for="deleteRuleNumber">Rule Number:</label>
@@ -78,7 +81,7 @@
             // Function to make a request to the specified Flask route
             function makeRequest(route, method, data, successCallback, errorCallback) {
                 $.ajax({
-                    url: "http://10.0.0.4:5000" + route,
+                    url: "http://74.235.42.100:5001" + route,
                     type: method,
                     contentType: "application/json",
                     data: JSON.stringify(data),
