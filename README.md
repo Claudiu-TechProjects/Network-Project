@@ -1,4 +1,7 @@
-# Network-Project
+# OPEN VPN SERVER with automatic vpn profile generation
+you need to download the application:
+Client VPN:
+https://openvpn.net/client/client-connect-vpn-for-windows/
 
 Config OPENVPN-SERVER
 
