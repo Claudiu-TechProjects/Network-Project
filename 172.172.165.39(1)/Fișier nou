@@ -1,0 +1,168 @@
+allow ports______----------------
+
+
+
+history
+
+
+history
+    1  sudo apt install python3-pip
+    2  sudo apt update
+    3  sudo apt install python3-pip
+    4  pip install flask
+    5  sudo apt install openvpn easy-rsa
+    6  mkdir ~/easy-rsa
+    7  ln -s /usr/share/easy-rsa/* ~/easy-rsa/
+    8  sudo chown retele ~/easy-rsa
+    9  chmod 700 ~/easy-rsa
+   10  cd ~/easy-rsa
+   11  echo "set_var EASYRSA_ALGO \"ec\"" > vars
+   12  echo "set_var EASYRSA_DIGEST \"sha512\"" >> vars
+   13  set_var EASYRSA_ALGO "ec"
+   14  set var EASYRSA_ALGO "ec"
+   15  set var EASYRSA_DIGEST "sha512"
+   16  ./easyrsa init-pki
+   17  cd ~/easy-rsa
+   18  ./easyrsa gen-req server nopass
+   19  sudo cp /home/retele/easy-rsa/pki/private/server.key /etc/openvpn/server/
+   20  ./easyrsa build-ca
+   21  ./easyrsa sign-req server server
+   22  sudo cp pki/issued/server.crt /etc/openvpn/server/
+   23  sudo cp pki/ca.crt /etc/openvpn/server/
+   24  cd ~/easy-rsa
+   25  openvpn --genkey --secret ta.key
+   26  sudo cp ta.key /etc/openvpn/server
+   27  mkdir -p ~/client-configs/keys
+   28  chmod -R 700 ~/client-configs
+   29  cd ~/easy-rsa
+   30  ./easyrsa gen-req client nopass
+   31  cp pki/private/client.key ~/client-configs/keys/
+   32  ./easyrsa sign-req client client
+   33  cp pki/issued/client.crt ~/client-configs/keys/
+   34  cp ~/easy-rsa/ta.key ~/client-configs/keys/
+   35  sudo cp /etc/openvpn/server/ca.crt ~/client-configs/keys/
+   36  sudo chown mehigh ~/client-configs/keys/*
+   37  sudo chown retele ~/client-configs/keys/*
+   38  sudo cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/server/
+   39  sudo gunzip /etc/openvpn/server/server.conf.gz
+   40  sudo nano  /etc/openvpn/server/server.conf
+   41  sudo nano /etc/sysctl.conf
+   42  ifconfig
+   43  sudo apt install net-tools
+   44  ifconfig
+   45  sudo nano /etc/ufw/before.rules
+   46  sudo nano /etc/default/ufw
+   47  sudo ufw allow 1194/udp
+   48  sudo ufw allow OpenSSH
+   49  sudo ufw disable
+   50  sudo ufw enable
+   51  sudo systemctl -f enable openvpn-server@server.service
+   52  sudo systemctl start openvpn-server@server.service
+   53  sudo systemctl status openvpn-server@server.service
+   54  mkdir -p ~/client-configs/files
+   55  cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf ~/client-configs/base.conf
+   56  sudo nano ~/client-configs/base.conf
+   57  sudo apt install expect
+   58  cd ~
+   59  python3 app.py
+   60  sudo ufw allow 5000/tcp
+   61  sudo ufw allow 5000/udp
+   62  sudo ufw disable
+   63  sudo ufw enable
+   64  python3 app.py
+   65  sudo chmod u+x generate_all.sh
+   66  sudo chmod u+x make_config.sh
+   67  python3 app.py
+   68  sudo nano
+   69  sudo systemctl restart openvpn-server@server.service
+   70  journalctl -xe
+   71  sudo nano /etc/openvpn/server/server.conf
+   72  sudo systemctl restart openvpn-server@server.service
+   73  sudo systemctl status openvpn-server@server.service
+   74  python3 app.py
+   75  ss -tulp
+   76  netstat -tulp
+   77  sudo nano /etc/openvpn/update-resolv-conf
+   78  sudo ufw allow out to 8.8.8.8 port 53 proto udp
+   79  sudo ufw allow in from 8.8.8.8 port 53 proto udp
+   80  sudo ufw disable
+   81  sudo ufw enable
+   82  sudo systemctl restart openvpn-server@server.service
+   83  sudo nano /etc/openvpn/server/server.conf
+   84  sudo systemctl restart openvpn-server@server.service
+   85  sudo nano /etc/openvpn/server/server.conf
+   86  openssl dhparam -out /etc/openvpn/dh.pem 2048
+   87  sudo openssl dhparam -out /etc/openvpn/dh.pem 2048
+   88  sudo systemctl restart openvpn-server@server.service
+   89  sudo openssl dhparam -out /etc/openvpn/dh.pem 2048
+   90  openssl dhparam -out /etc/openvpn/dh.pem 2048
+   91  sudo nano /etc/openvpn/server/server.conf
+   92  sudo openssl dhparam -out /etc/openvpn/dh.pem 2048
+   93  sudo systemctl restart openvpn-server@server.service
+   94  sudo nano /etc/openvpn/server/server.conf
+   95  sudo systemctl restart openvpn-server@server.service
+   96  sudo nano /etc/openvpn/server/server.conf
+   97  sudo systemctl restart openvpn-server@server.service
+   98  sudo nano /etc/openvpn/server/server.conf
+   99  sudo systemctl restart openvpn-server@server.service
+  100  ping 8.8.8.8
+  101  sudo nano /etc/openvpn/server/server.conf
+  102  sudo systemctl restart openvpn-server@server.service
+  103  python3 app.py
+  104  sudo nano /etc/ufw/before.rules
+  105  sudo nano ~/client-configs/base.conf
+  106  python3 app.py
+  107  sudo nano /etc/openvpn/server/server.conf
+  108  sudo systemctl restart openvpn-server@server.service
+  109  python3 app.py
+  110  hisotry
+  111  history
+  112  ls
+  113  sudo nano /etc/openvpn/server/server.conf
+  114  sudo nano ~/client-configs/base.conf
+  115  sudo systemctl restart openvpn-server@server.service
+  116  ps
+  117  sudo nano /etc/openvpn/server/server.conf
+  118  sudo systemctl restart openvpn-server@server.service
+  119  python3 app.py
+  120  ls
+  121* python3 app.py
+  122  sudo nano /etc/ufw/before.rules
+  123  sudo ufw disable
+  124  sudo ufw enable
+  125  sudo nano /etc/ufw/before.rules
+  126* sudo ufw al
+  127  sudo ufw enable
+  128  ls
+  129  cd iptables/
+  130  python3 app.py
+  131  pip install flask_cors
+  132  python3 app.py
+  133  sudo nano /etc/ufw/before.rules
+  134  cat app.py
+  135  sudo nano /etc/ufw/before.rules
+  136  python3 app.py
+  137  sudo ufw allow 5001/tcp
+  138  sudo ufw allow 5001/udp
+  139  sudo ufw disable
+  140  sudo ufw enable
+  141  python3 app.py
+  142  sudo nano /etc/ufw/before.rules
+  143  python3 app.py
+  144  sudo python3 app.py
+  145  sudo -E python3 app.py
+  146  sudo nano /etc/ufw/before.rules
+  147  sudo ufw disable
+  148  sudo ufw enable
+  149  sudo nano /etc/ufw/before.rules
+  150  sudo ufw disable
+  151  sudo ufw enable
+  152  sudo nano /etc/ufw/before.rules
+  153  sudo ufw disable
+  154  sudo ufw enable
+  155  sudo nano /etc/ufw/before.rules
+  156  sudo -E python3 app.py
+  157  sudo nano /etc/ufw/before.rules
+  158  sudo -E python3 app.py
+  159  history
+

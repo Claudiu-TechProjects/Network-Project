@@ -16,8 +16,7 @@
 
     <h1>Flask Iptables Interface</h1>
 
-    <button id="getFilterRules">Get Filter Rules</button>
-    <button id="getNatRules">Get NAT Rules</button>
+    <button id="getFilterRules">Get UFW Rules</button>
     <button id="addRule">Add Rule</button>
     <div id="addRuleForm" style="display: none;">
         <label for="ruleTable">Rule Table:</label>
@@ -26,14 +25,6 @@
             <option value="nat">nat</option>
         </select>
         <br>
-        <label for="ruleType">Rule Type:</label>
-        <select id="ruleType">
-            <option value="INPUT">INPUT</option>
-            <option value="FORWARD">FORWARD</option>
-            <option value="OUTPUT">OUTPUT</option>
-            <option value="PREROUTING">PREROUTING</option>
-            <option value="POSTROUTING">POSTROUTING</option>
-        </select>
         <br>
         <label for="ruleAction">Rule Action:</label>
         <select id="ruleAction">
@@ -46,8 +37,6 @@
         <label for="ipAddress">IP Address:</label>
         <input type="text" id="ipAddress" placeholder="Enter IP Address">
         <br>
-        <label for="port">Port:</label>
-        <input type="text" id="port" placeholder="Enter Port">
         <br>
         <div id="ipAddressDestinationContainer" style="display: none;">
             <label for="ipAddressDestination">IP Address Destination:</label>
@@ -60,17 +49,13 @@
     <div id="deleteRuleForm" style="display: none;">
         <label for="deleteRuleType">Rule Type:</label>
         <select id="deleteRuleType">
-            <option value="INPUT">INPUT</option>
-            <option value="FORWARD">FORWARD</option>
-            <option value="OUTPUT">OUTPUT</option>
-            <option value="PREROUTING">PREROUTING</option>
-            <option value="POSTROUTING">POSTROUTING</option>
-	    <option value="DROP">DROP</option>
+            <option value="ACCEPT">ACCEPT</option>
+      	    <option value="DROP">DROP</option>
 	    <option value="REJECT">REJECT</option>
         </select>
         <br>
-        <label for="deleteRuleNumber">Rule Number:</label>
-        <input type="text" id="deleteRuleNumber" placeholder="Enter Rule Number">
+        <label for="deleteRuleNumber">IP:</label>
+        <input type="text" id="deleteRuleNumber" placeholder="Enter IP">
         <br>
         <button id="submitDeleteRule">Submit Delete Rule</button>
     </div>
