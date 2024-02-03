@@ -150,7 +150,18 @@ key-direction 1
 ; dhcp-option DOMAIN-ROUTE .
 
 
-If you want a vpn profile you can run the server flask and add your username
+If you want a vpn profile you can run the server flask and add your username:
+
+install:
+-python3
+-pip
+-modules
+
+sudo -E python3 app.py
+
+http://localhost:5000
+or public ip
+
 
 Commands in bash:
 
